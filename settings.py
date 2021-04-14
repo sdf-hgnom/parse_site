@@ -1,0 +1,5 @@
+DBNAME ='weather'
+DBUSER = 'weather'
+DBPASS = 'qwerty12'
+DBHOST = '192.168.56.102'
+DBPORT = '5432'
