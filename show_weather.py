@@ -2,6 +2,7 @@
 
 # use Python 3.7.3
 
+"""
 
 # В очередной спешке, проверив приложение с прогнозом погоды, вы выбежали
 # навстречу ревью вашего кода, которое ожидало вас в офисе.
@@ -40,15 +41,7 @@
 #   Создание открыток из полученных прогнозов
 #   Выведение полученных прогнозов на консоль
 # При старте консольная утилита должна загружать прогнозы за прошедшую неделю.
-
-# Рекомендации:
-# Можно создать отдельный модуль для инициализирования базы данных.
-# Как далее использовать эту базу данных в движке:
-# Передавать DatabaseUpdater url-путь
-# https://peewee.readthedocs.io/en/latest/peewee/playhouse.html#db-url
-# Приконнектится по полученному url-пути к базе данных
-# Инициализировать её через DatabaseProxy()
-# https://peewee.readthedocs.io/en/latest/peewee/database.html#dynamically-defining-a-database
+"""
 
 
 import argparse
@@ -121,6 +114,7 @@ def get_init_args():
 
 def main():
     user_input = get_init_args()
+    print('u_o:',user_input)
     user_input.func(user_input)
     print('All Done')
 
