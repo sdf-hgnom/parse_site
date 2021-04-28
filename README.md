@@ -31,3 +31,9 @@ multiprocessing
 База данных Postgres  
 Для прогноза парсится сайт https://darksky.net  
 Открытки с прогнозом сохраняются в БД и на диск  
+
+Для работы необходим Postgres SQL север 
+В разработке использовался Oracle VM VirtualBox  
+в нем был установлен Arch Linux  
+Там был установлен (PostgreSQL) 13.2
+
