@@ -33,7 +33,7 @@ class ExceptionWeatherError(ValueError):
 
 
 class WeatherOneDay(threading.Thread):
-    USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " \
+    USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (HTML, like Gecko) " \
                  "Chrome/84.0.4147.135 YaBrowser/20.8.3.115 Yowser/2.5 Safari/537.36"
     URL_DATE_FORMAT = '%Y-%m-%d'
     URL_WEATHER_FROM = 'https://darksky.net/details/'
@@ -66,7 +66,7 @@ class WeatherOneDay(threading.Thread):
 
     def _ident_file_name(self, latitude, longitude) -> Text:
         """
-        Генирация имени файла скартинкой
+        Генерация имени файла с картинкой
         :param latitude: широта города
         :param longitude: долгота города
         :return: имя файла сохранения
@@ -79,8 +79,8 @@ class WeatherOneDay(threading.Thread):
     @staticmethod
     def _from_fahrenheit_to_village(input_str) -> int:
         """
-        Перевести градусы по Фарингейту в градусы по Цельсию
-        :param input_str: градус по Фарингейту
+        Перевести градусы по Фаренгейту в градусы по Цельсию
+        :param input_str: градус по Фаренгейту
         :return: градус по Цельсию
         """
         input_fahrenheit = int(input_str)
@@ -88,7 +88,7 @@ class WeatherOneDay(threading.Thread):
         return round(celiac)
 
     def _get_town_id(self):
-        """Опредилить id города в Б/Д"""
+        """Определить id города в Б/Д"""
         try:
             town_id = self.get_town_id_db(town=self.city)
         except peewee.DoesNotExist:
@@ -108,7 +108,7 @@ class WeatherOneDay(threading.Thread):
     @psql_run_transaction
     def save_town_db(self, town: Text, longitude, latitude) -> int:
         """
-        Сохранить инфу по городу в Б/Д
+        Сохранить информацию по городу в Б/Д
         :param town: город
         :param longitude: долгота
         :param latitude: широта
@@ -128,7 +128,7 @@ class WeatherOneDay(threading.Thread):
 
     def _get_coordinates_inet(self, town: Text) -> Tuple[Text, Text]:
         """
-        Опредилить координаты места по Интернет-опредтлителю
+        Определить координаты места по Интернет-определителю
         :param town: место
         :return: координаты
         """
@@ -142,7 +142,7 @@ class WeatherOneDay(threading.Thread):
 
     def get_coordinates(self, town: Text) -> Tuple[Text, Text, int]:
         """
-        Вернет геогафическую долготу и ширину города
+        Вернет географическую долготу и ширину города
         :param town:
         :return: долгота, ширина
         """
@@ -157,7 +157,7 @@ class WeatherOneDay(threading.Thread):
         if get_inet:
             if self.local:
                 log.error(f'Запрошен локальный режим но в базе нет информации для города {self.city}')
-                raise ExceptionWeatherError(f'В базе нет информациии о городе {self.city} [local mode]')
+                raise ExceptionWeatherError(f'В базе нет информации о городе {self.city} [local mode]')
             latitude, longitude = self._get_coordinates_inet(town)
             town_id = self.save_town_db(town, longitude, latitude)
         else:
@@ -166,7 +166,7 @@ class WeatherOneDay(threading.Thread):
         return latitude, longitude, town_id
 
     def _get_weather_inet(self) -> WeatherDayInfo:
-        """Парсинг инфы из Инет"""
+        """Парсинг инфы из Интернет """
         log.info(f'Получаем погоду для города {self.city} и числа {self.date} из Интернета')
         latitude, longitude, town_id = self.get_coordinates(town=self.city)
         image_file_name = self._ident_file_name(latitude, longitude)
