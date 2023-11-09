@@ -34,6 +34,6 @@ sortedcontainers==2.4.0
 soupsieve==2.3.1
 trio==0.19.0
 trio-websocket==0.9.2
-urllib3==1.26.17
+urllib3==1.26.18
 webencodings==0.5.1
 wsproto==1.0.0
